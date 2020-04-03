@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Menu, Dropdown, Layout, Avatar } from "antd";
+import { useDispatch } from "redux-react-hook";
+import { useHistory } from "react-router-dom";
 
 import {
   MenuUnfoldOutlined,
@@ -10,22 +12,21 @@ import {
 const {Header} = Layout;
 
 const PrimaryHeader: React.FC<{}> = props=>{
-	const avatar = "";
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const handleLogout = () => {
+		dispatch({type:"logout"})
+		history.push("/login")
+	}
 	const menu = (
     <Menu>
       <Menu.ItemGroup title="用户设置">
         <Menu.Divider />
-        <Menu.Item>
-          个人设置
-        </Menu.Item>
-        <Menu.Item>
-          系统设置
-        </Menu.Item>
+        <Menu.Item>个人设置</Menu.Item>
+        <Menu.Item>系统设置</Menu.Item>
       </Menu.ItemGroup>
       <Menu.Divider />
-      <Menu.Item>
-    			退出登录
-      </Menu.Item>
+      <Menu.Item onClick={handleLogout}>退出登录</Menu.Item>
     </Menu>
   );
 	return (

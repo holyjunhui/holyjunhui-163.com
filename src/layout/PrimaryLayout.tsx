@@ -12,13 +12,11 @@ import UnAuthLayout from "./UnAuthLayout";
 import { Layout } from "antd";
 const PrimaryLayout: React.FC<{}> = props=>{
 	const location = useLocation();
-	console.log("props11111111",props)
 	//未登录跳转到login
 	console.log("getToken", getToken());
 	const token = getToken();
 			const getUser = async (token: string | null) => {
         let res = await getUserInfo(token);
-        console.log("userifno", res);
       };
 
 	if(!getToken()) {

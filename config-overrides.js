@@ -22,7 +22,7 @@ const devServerConfig = () => config => {
 		compress: true,
 		proxy: { // 配置跨域
 			"/v1": {
-				target: "http://XXXXXX:8080/api", // 这里后台的地址
+				target: "http://XXXXX:8080/api", // 这里后台的地址
 				ws: false,
 				changOrigin: true, // 允许跨域
 				pathRewrite: {

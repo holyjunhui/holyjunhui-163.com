@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import store from './store';
+import { StoreContext } from "redux-react-hook";
+import store from './hooksStore';
+
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <StoreContext.Provider value={store}>
     	<App />	
-		</Provider>
+		</StoreContext.Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -5,30 +5,31 @@ import { connect } from "react-redux";
 import { RouteComponentProps, useHistory } from "react-router-dom";
 
 import { getCaptcha, getMeta, login, getUserInfo } from "../../api/login/login";
-import { setUserInfo, UserState, UserToken, setUserToken } from "../../store/module/user";
+// import { setUserInfo, UserState, UserToken, setUserToken } from "../../store/module/user";
 
 import { getToken } from "../../utils/auth";
+import { useDispatch } from "redux-react-hook";
 
-interface LoginProps extends RouteComponentProps {
-	setUserInfo:(userInfo: UserState) => void,
-	setUserToken:(token: UserToken) =>void
-}
-const LoginForm: React.FC<LoginProps> = (props: LoginProps) => {
+// interface LoginProps extends RouteComponentProps {
+// 	setUserInfo:(userInfo: UserState) => void,
+// 	setUserToken:(token: UserToken) =>void
+// }
+const LoginForm: React.FC<{}> = (props) => {
 	const [captcha, setCaptcha] = useState<any>({});
+	const dispatch = useDispatch();
 	const history = useHistory();
 		const getUser = async (token: string) => {
       let res = await getUserInfo(token);
       console.log("userifno", res);
     };
   const onFinish = async (values: any) => {
-    console.log("Received values of form: ", values);
 	const { email, password, captcha_value } = values;
+
 		let res = await login({captcha_value, captcha_id:captcha?.id},{email,password});
 		console.log("res",res)
 		if(res.ok) {
 			const token = res.data?.token;
-			console.log("props",props)
-			props.setUserToken(token);
+			dispatch({ type: "setToken", token: token });
 			// props.setUserInfo(token)
 			getUser(token)
 			history.push("/monitor");
@@ -109,7 +110,4 @@ const LoginForm: React.FC<LoginProps> = (props: LoginProps) => {
   );
 };
 // const LoginForm = Form.create({ name: "login" })(Login);
-export default connect(() => ({}), {
-  setUserInfo,
-  setUserToken
-})(LoginForm);
+export default LoginForm;

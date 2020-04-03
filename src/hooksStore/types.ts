@@ -8,5 +8,5 @@ export interface IStoreState {
 
 export interface IAction<T> {
   type: string;
-  payload: T;
+  token: T;
 }

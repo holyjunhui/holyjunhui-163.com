@@ -16,7 +16,7 @@
     "@types/redux-logger": "^3.0.7",
     "antd": "^4.0.4",
     "axios": "^0.19.2",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "postcss-px2rem": "^0.3.0",
     "qs": "^6.9.3",
     "react": "^16.13.1",
